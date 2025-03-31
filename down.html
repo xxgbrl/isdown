@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is It Down?</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        input, button { padding: 10px; margin: 5px; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Is It Down?</h1>
+    <p>Enter a website URL to check if it's online.</p>
+    <input type="text" id="url" placeholder="https://example.com">
+    <button onclick="checkSite()">Check</button>
+    <p id="result"></p>
+    
+    <script>
+        function checkSite() {
+            let url = document.getElementById('url').value.trim();
+            if (!url.startsWith('http')) {
+                url = 'https://' + url;
+            }
+            fetch(url, { mode: 'no-cors' })
+                .then(() => {
+                    document.getElementById('result').innerText = `✅ ${url} is up!`;
+                })
+                .catch(() => {
+                    document.getElementById('result').innerText = `❌ ${url} seems to be down or invalid.`;
+                });
+        }
+    </script>
+       <br><br><center>all rights (maybe) reserved &copy; 2025</center>
+</body>
+</html>
